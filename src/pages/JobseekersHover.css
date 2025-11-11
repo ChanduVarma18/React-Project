@@ -1,0 +1,98 @@
+.hover-jobseekers {
+  text-align: center;
+  margin: 80px auto;
+  max-width: 900px;
+  padding: 20px;
+  font-family: Inter, sans-serif;
+}
+
+.hover-title {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.hover-subtext {
+  color: #6b7280;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+/* Container holds Fresher and Experience */
+.hover-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* Each main card */
+.hover-card {
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 20px 30px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hover-card:hover {
+  transform: translateY(-6px);
+  border-color: #ff7a1a;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* Main title (Fresher / Experience) */
+.main-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #ff7a1a;
+}
+
+/* Hidden subcategories */
+.hover-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+/* When hovered, show sublist */
+.hover-card:hover .hover-list {
+  max-height: 600px;
+  opacity: 1;
+  margin-top: 12px;
+}
+
+/* Subcategory items */
+.hover-list li {
+  background: #fff6ee;
+  border: 1px solid #fdebd2;
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #333;
+  transition: background 0.2s ease;
+}
+
+.hover-list li:hover {
+  background: #ffe0c2;
+}
+
+/* Color distinction */
+.fresher-card .main-title { color: #10b981; }
+.experience-card .main-title { color: #3b82f6; }
+
+.fresher-list li { background: #ecfdf5; border-color: #d1fae5; }
+.fresher-list li:hover { background: #a7f3d0; }
+
+.experience-list li { background: #eff6ff; border-color: #bfdbfe; }
+.experience-list li:hover { background: #dbeafe; }

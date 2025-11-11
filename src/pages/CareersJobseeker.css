@@ -1,0 +1,91 @@
+/* ---------- Base ---------- */
+.page {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: #1f2937;
+  line-height: 1.5;
+  background: #fff;
+  margin: 0;
+}
+
+/* ---------- Navbar ---------- */
+.nav { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #eef2f7; z-index: 100; }
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 14px 20px;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px;
+}
+.logo { display: flex; align-items: center; text-decoration: none; color: inherit; font-weight: 700; font-size: 22px; gap: 8px; }
+.logo-icon { font-size: 22px; }
+.logo-text .highlight { color: #3bb54a; }
+.nav-links { list-style: none; display: flex; justify-content: center; align-items: center; gap: 26px; margin: 0; padding: 0; }
+.nav-links a { text-decoration: none; color: #111827; font-weight: 600; font-size: 15px; }
+.actions { display: flex; justify-content: flex-end; align-items: center; gap: 14px; }
+.lang-btn {
+  border: 1px solid #e5e7eb; background: #fff; border-radius: 8px; padding: 8px 12px; font-weight: 600; cursor: pointer;
+}
+.demo-link { text-decoration: none; font-weight: 700; color: #111827; }
+.cta-btn {
+  background: #ff7a1a; color: #fff; border: none; border-radius: 10px; padding: 10px 16px;
+  font-weight: 700; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* ---------- Hero ---------- */
+.hero { background: linear-gradient(135deg, #ffa63e, #ff6a3d); color: #fff; text-align: left; padding: 56px 20px; }
+.hero h1 { max-width: 1200px; margin: 0 auto; font-size: 56px; font-weight: 800; letter-spacing: -0.5px; }
+
+/* ---------- Intro ---------- */
+.intro { text-align: center; padding: 54px 20px 40px; max-width: 900px; margin: 0 auto; }
+.intro h2 { font-size: 36px; font-weight: 800; margin-bottom: 10px; }
+.intro p { color: #6b7280; font-size: 16px; margin-bottom: 28px; }
+.primary-btn {
+  display: inline-block; background: #ff7a1a; color: #fff; text-decoration: none;
+  padding: 14px 22px; border-radius: 10px; font-weight: 700;
+}
+
+/* ---------- Hover Jobseekers ---------- */
+.hover-jobseekers { max-width: 1100px; margin: 40px auto 80px; padding: 0 20px; text-align: center; }
+.js-badge {
+  display: inline-block; background: #8b5cf6; color: #fff; border-radius: 12px; padding: 6px 10px;
+  font-weight: 700; font-size: 12px; letter-spacing: .3px; margin-bottom: 6px;
+}
+.hover-title { font-size: 28px; font-weight: 800; margin: 6px 0; }
+.hover-subtext { color: #6b7280; margin-bottom: 24px; }
+
+/* Container holds Fresher and Experience */
+.hover-container { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+
+/* Each main card */
+.hover-card {
+  background: #fff; border: 2px solid #e5e7eb; border-radius: 20px; padding: 20px 30px; width: 300px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05); position: relative; transition: all 0.3s ease; cursor: pointer;
+}
+.hover-card:hover { transform: translateY(-6px); border-color: #ff7a1a; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+
+/* Titles */
+.main-title { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+.fresher-card .main-title { color: #10b981; }
+.experience-card .main-title { color: #3b82f6; }
+
+/* Hidden subcategories */
+.hover-list {
+  list-style: none; margin: 0; padding: 0; max-height: 0; opacity: 0; overflow: hidden; transition: all 0.4s ease;
+}
+.hover-card:hover .hover-list { max-height: 600px; opacity: 1; margin-top: 12px; }
+
+/* Items */
+.hover-list li {
+  background: #fff6ee; border: 1px solid #fdebd2; border-radius: 10px; padding: 8px 10px;
+  margin-bottom: 8px; font-size: 15px; color: #333; transition: background 0.2s ease;
+}
+.hover-list li:hover { background: #ffe0c2; }
+
+.fresher-list li { background: #ecfdf5; border-color: #d1fae5; }
+.fresher-list li:hover { background: #a7f3d0; }
+.experience-list li { background: #eff6ff; border-color: #bfdbfe; }
+.experience-list li:hover { background: #dbeafe; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero h1 { font-size: 42px; }
+  .hover-container { gap: 20px; }
+  .hover-card { width: 100%; max-width: 500px; }
+}

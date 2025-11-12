@@ -1,0 +1,345 @@
+/* src/components/CareersJobseeker.css */
+
+/* ===== Base Page ===== */
+html, body, .page {
+  height: 100%;
+  margin: 0;
+  background: url("../assets/bg8.avif") no-repeat center center fixed;
+  background-size: cover;
+  font-family: "Inter", sans-serif;
+  color: #fff;
+  scroll-behavior: auto; /* ensure instant page switch (no smooth scroll) */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+/* ===== GLOBAL BLACK TINT OVERLAY (applies under content) ===== */
+.page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* black tint overlay */
+  z-index: 0; /* sits under page content */
+}
+.page {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Scope for Careers page only (no scroll, single-viewport) ===== */
+.page.careers-page {
+  height: 100vh;     /* fill viewport */
+  overflow: hidden;  /* prevent page scrolling on Careers page */
+}
+
+.page.about-page,
+.page.contact-page {
+  height: 100vh;
+  overflow: hidden; /* prevent scroll */
+}
+
+/* ===== Navbar ===== */
+/* NOTE: made transparent so it visually merges with the background/tint */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 80px;
+  background: transparent; /* transparent to merge with background/tint */
+  /* removed backdrop-filter: blur(...) to avoid blur effect */
+  z-index: 999;
+  box-shadow: none;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: baseline;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.nav-logo .brand { color: #ffffff; }
+.nav-logo .accent { color: #1e90ff; margin-left: 6px; font-weight: 700; }
+
+/* push the nav links to the right */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 45px;
+  margin: 0;
+  padding: 0;
+  margin-left: auto;
+  align-items: center;
+}
+
+.nav-links li { display: inline-block; }
+.nav-links a,
+.nav-links a:visited {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  transition: color 0.25s ease, transform 0.25s ease;
+  display: inline-block;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+/* subtle hover ensures links remain visible without a blurred background */
+.nav-links a:hover { color: #1e90ff; transform: translateY(-2px); }
+
+/* active link (will apply if you add an active class from Router) */
+.nav-links a.active {
+  color: #1e90ff;
+  text-decoration: underline;
+}
+
+/* ===== Hamburger (for mobile) ===== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 34px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  gap: 5px;
+}
+.bar {
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  margin: 0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.is-active .bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+@media (max-width: 880px) {
+  .nav { padding: 14px 20px; }
+  .nav-links {
+    position: absolute;
+    top: 64px;
+    right: 20px;
+    flex-direction: column;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 8px;
+    padding: 14px;
+    display: none;
+    min-width: 160px;
+  }
+  .nav-links.open { display: flex; }
+  .hamburger { display: flex; }
+}
+
+/* ===== Hero Section ===== */
+/* hero is used across pages. For Careers we place cards inside hero too. */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* full viewport */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 72px; /* reserve space for fixed nav so content doesn't hide under it */
+  box-sizing: border-box;
+}
+
+/* overlay using pseudo element for consistent stacking */
+.hero::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.55) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  padding: 18px 20px;
+  box-sizing: border-box;
+
+  /* limit vertical space so heading + cards fit inside viewport */
+  max-height: calc(100vh - 72px); /* nav height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* heading */
+.hero h1 {
+  margin: 8px 0 6px;
+  line-height: 1.02;
+  font-weight: 800;
+  font-size: clamp(32px, 6.5vw, 72px);
+  color: #fff;
+  letter-spacing: -1px;
+}
+.hero h1 span { color: #1e90ff; }
+
+/* subtitle */
+.hero p,
+.hero .hero-sub {
+  font-size: clamp(14px, 1.6vw, 20px);
+  color: #e0e0e0;
+  margin: 6px 0 18px;
+}
+
+/* CTA (used on other pages) */
+.hero-btn {
+  padding: 12px 34px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  background-color: #1e90ff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.hero-btn:hover {
+  background-color: #0078ff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 120, 255, 0.25);
+}
+
+/* ===== Cards (Job Seekers / Employers) ===== */
+/* Cards are placed inside the hero on Careers page so everything fits one viewport */
+.cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+/* reduce card footprint so two can appear side-by-side */
+.card {
+  background: rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 18px 20px;
+  min-width: 240px;   /* small enough to fit side-by-side on many screens */
+  max-width: 44%;     /* two cards side-by-side consume ~88% width total */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card h3 {
+  font-size: clamp(18px, 2.4vw, 28px);
+  color: #1e90ff;
+  margin: 6px 0;
+  font-weight: 800;
+}
+
+.card p {
+  font-size: clamp(12px, 1.4vw, 16px);
+  color: #e6e6e6;
+  line-height: 1.5;
+  max-width: 340px;
+}
+
+/* card CTA */
+.card .btn {
+  margin-top: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  background: #03a9f4;
+  color: #fff;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.card .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(3,169,244,0.18);
+}
+
+/* hover feel */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.6);
+}
+
+/* ===== Content Section (other pages) ===== */
+.content-section {
+  min-height: 60vh;
+  padding: 80px 20px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.12);
+  position: relative;
+  z-index: 2;
+}
+
+.content-section h2 { font-size: 36px; color: #1e90ff; margin-bottom: 12px; }
+.content-section .subtext { color: #dcdcdc; margin-bottom: 36px; font-size: 18px; }
+
+/* ===== Responsive rules ===== */
+@media (max-width: 1100px) {
+  .hero h1 { font-size: clamp(28px, 7vw, 56px); padding: 0 16px; }
+  .cards { gap: 18px; }
+  .card { min-width: 300px; padding: 16px; max-width: 46%; }
+}
+
+@media (max-width: 880px) {
+  /* reduce nav spacing and hero padding on smaller screens */
+  .nav { padding: 12px 16px; }
+  .hero { padding-top: 64px; }
+  .hero-content { max-height: calc(100vh - 64px); justify-content: center; gap: 12px; }
+
+  /* mobile nav: hide inline links (use hamburger) */
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; }
+
+  /* Stack cards vertically and reduce width so everything fits */
+  .cards {
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+  }
+  .card {
+    max-width: 92%;
+    min-width: auto;
+    padding: 14px;
+  }
+
+  /* shrink heading */
+  .hero h1 { font-size: clamp(24px, 8.5vw, 42px); }
+}
+
+/* Extra tiny screens: reduce padding and font sizes a touch more */
+@media (max-width: 420px) {
+  .nav { padding: 10px 12px; }
+  .nav-logo { font-size: 22px; }
+  .hero h1 { font-size: clamp(20px, 9.5vw, 36px); }
+  .card p { font-size: 13px; }
+  .card h3 { font-size: 20px; }
+  .card .btn { padding: 8px 12px; }
+}
